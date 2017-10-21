@@ -1,0 +1,27 @@
+<p>Enter your name in the first box.</p>
+<p>Enter whether you need need assitance or not in the second box</p> 
+<p>Leave a note on your location/ what kind of assistance you need in the third box</p>
+
+<form (submit)="addName()">
+  <input [(ngModel)]="newName" name="newName" placeholder="Name">  
+  <input [(ngModel)]="needHelp" name="needHelp" placeholder="Yes/No"> 
+  <input [(ngModel)]="notes" name="notes" placeholder="Notes"> 
+  <button type="submit">Add</button>
+</form>
+
+<table>
+   <tr>
+    <th>Person</th>
+    <th>Need Assistance?</th> 
+    <th>Notes</th>
+    <th>Time Logged</th>
+  </tr>
+  <tr *ngFor="let name of names">
+  	<td>{{ name[0] }}</td>
+  	<td>{{ name[1] }}</td>
+  	<td>{{ name[2] }}</td>
+  	<td>{{ name[3] }}</td>
+  </tr>
+</table>
+
+
