@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 const BASE_URL = 'http://localhost:8081';
-const ARCHIVE_END_POINT = BASE_URL + '/users';
+const ARCHIVE_END_POINT = BASE_URL + '/notes';
 
 
 @Injectable()
