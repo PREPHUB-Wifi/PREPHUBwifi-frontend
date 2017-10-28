@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response, Headers, RequestOptions} from '@angular/http';
+import { Note } from './home.module';
 
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -15,18 +16,18 @@ export class  NameListService {
   ) {}
 
   //get all users
-  get(): Observable<Notes[]> {
+  get(): Observable<Note[]> {
     let headers = new Headers();
     return this.http.get( ARCHIVE_END_POINT,{headers: headers})
     .map((res:Response) => res.json())
-    .catch((error:any) => Observable.throw(error.json().error || 'server error trying to get all reports');
+    .catch((error:any) => Observable.throw(error.json().error || 'server error trying to get all reports'));
   }
 
-  sendNewNote(note: any): Observable<Notes[]> {
+  sendNewNote(note: any): Observable<Note[]> {
     console.log("In send New Note");
     let bodyString = JSON.stringify(note);
     let headers = new Headers({ 'Content-Type': 'application/json'}); 
-    headers.append('Access-Control-Allow-Origin', 'localhost');
+    headers.append('Access-Control-Allow-Origin', '*');
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post( ARCHIVE_END_POINT, note, options).subscribe();

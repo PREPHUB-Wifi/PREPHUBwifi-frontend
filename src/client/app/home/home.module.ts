@@ -4,6 +4,13 @@ import { HomeRoutingModule } from './home-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { NameListService } from './home.service';
 
+export interface Note {
+    newName: string;
+    needHelp: string;
+    notes: string;
+    time: number;
+}
+
 @NgModule({
   imports: [HomeRoutingModule, SharedModule],
   declarations: [HomeComponent],

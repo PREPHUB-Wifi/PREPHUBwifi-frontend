@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NameListService } from './home.service';
+import { Note } from './home.module';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -18,12 +19,6 @@ export class HomeComponent implements OnInit {
   errorMessage: string;
   names: any[] = [];
 
-  interface Message {
-    newName: string;
-    needHelp: string;
-    notes: string;
-    time: number;
-  }
   /**
    * Creates an instance of the HomeComponent with the injected
    * NameListService.
@@ -56,7 +51,7 @@ export class HomeComponent implements OnInit {
    */
   addName(): boolean {
     // TODO: implement nameListService.post  
-    var newNote:Message = { 
+    var newNote:Note = { 
      newName: this.newName,
      needHelp: this.needHelp, 
      notes: this.notes,
