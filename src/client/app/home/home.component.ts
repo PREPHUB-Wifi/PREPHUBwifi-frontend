@@ -18,6 +18,12 @@ export class HomeComponent implements OnInit {
   errorMessage: string;
   names: any[] = [];
 
+  interface Message {
+    newName: string;
+    needHelp: string;
+    notes: string;
+    time: new Date();
+  }
   /**
    * Creates an instance of the HomeComponent with the injected
    * NameListService.
@@ -49,10 +55,17 @@ export class HomeComponent implements OnInit {
    * @return {boolean} false to prevent default form submit behavior to refresh the page.
    */
   addName(): boolean {
-    // TODO: implement nameListService.post 
-    let newNote = { "newName": this.newName, "needHelp": this.needHelp, "notes": this.notes, "time" : new Date()}; 
-    this.nameListService.sendNewNote(newNote);
+    // TODO: implement nameListService.post  
+    var newNote:Message = { 
+     newName: this.newName,
+     needHelp: this.needHelp, 
+     notes: this.notes,
+     time: this.time
+    } 
+    //let newNote = { "newName": this.newName, "needHelp": this.needHelp, "notes": this.notes, "time" : //new Date()}; 
     //this.names.push([this.newName,this.needHelp,this.notes, new Date()]);
+
+    this.nameListService.sendNewNote(newNote); 
     this.newName = ''; 
     this.needHelp = ''; 
     this.notes = '';
