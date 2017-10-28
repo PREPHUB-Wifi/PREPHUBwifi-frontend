@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     newName: string;
     needHelp: string;
     notes: string;
-    time: new Date();
+    time: number;
   }
   /**
    * Creates an instance of the HomeComponent with the injected
@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
      newName: this.newName,
      needHelp: this.needHelp, 
      notes: this.notes,
-     time: this.time
+     time: new Date().getTime()
     } 
     //let newNote = { "newName": this.newName, "needHelp": this.needHelp, "notes": this.notes, "time" : //new Date()}; 
     //this.names.push([this.newName,this.needHelp,this.notes, new Date()]);
