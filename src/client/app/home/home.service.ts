@@ -15,29 +15,20 @@ export class  NameListService {
   ) {}
 
   //get all users
-  get() {
+  get(): Observable<Notes[]> {
     let headers = new Headers();
-
-    return this.http.get( ARCHIVE_END_POINT,
-      {
-        headers: headers
-      }
-    )
-      .map((res:Response) => res.json())
-      .catch((error:any) => Observable.throw(error.json().error || 'server error trying to get all reports'));
-
+    return this.http.get( ARCHIVE_END_POINT,{headers: headers})
+    .map((res:Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'server error trying to get all reports');
   }
 
-  sendNewNote(note: any) {
+  sendNewNote(note: any): Observable<Notes[]> {
     console.log("In send New Note");
-    let headers = new Headers();
+    let bodyString = JSON.stringify(note);
+    let headers = new Headers({ 'Content-Type': 'application/json'}); 
     headers.append('Access-Control-Allow-Origin', 'localhost');
+    let options = new RequestOptions({ headers: headers });
 
-    return this.http.post( ARCHIVE_END_POINT,
-      {
-        body: note,
-        headers: headers
-      }
-    ).subscribe();
+    return this.http.post( ARCHIVE_END_POINT, note, options).subscribe();
   }
 }

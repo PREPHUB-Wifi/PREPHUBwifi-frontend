@@ -30,13 +30,13 @@ export class HomeComponent implements OnInit {
    * Get the names OnInit
    */
   ngOnInit() {
-    this.getNames();
+    this.getNotes();
   }
 
   /**
    * Handle the nameListService observable
    */
-  getNames() {
+  getNotes() {
     this.nameListService.get()
       .subscribe(
         names => this.names = names,
@@ -50,9 +50,9 @@ export class HomeComponent implements OnInit {
    */
   addName(): boolean {
     // TODO: implement nameListService.post 
-    let newNote = { "newName": this.newName, "needHelp": this.needHelp, "notes": this.notes}; this.nameListService.sendNewNote( newNote);
-
-    this.names.push([this.newName,this.needHelp,this.notes, new Date()]);
+    let newNote = { "newName": this.newName, "needHelp": this.needHelp, "notes": this.notes, "time" : new Date()}; 
+    this.nameListService.sendNewNote(newNote);
+    //this.names.push([this.newName,this.needHelp,this.notes, new Date()]);
     this.newName = ''; 
     this.needHelp = ''; 
     this.notes = '';

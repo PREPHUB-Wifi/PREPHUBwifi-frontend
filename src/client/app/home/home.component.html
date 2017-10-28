@@ -17,10 +17,10 @@
     <th>Time Logged</th>
   </tr>
   <tr *ngFor="let name of names">
-  	<td>{{ name[0] }}</td>
-  	<td>{{ name[1] }}</td>
-  	<td>{{ name[2] }}</td>
-  	<td>{{ name[3] }}</td>
+  	<td>{{ name.newName }}</td>
+  	<td>{{ name.needHelp }}</td>
+  	<td>{{ name.notes }}</td>
+  	<td>{{ name.time }}</td>
   </tr>
 </table>
 
