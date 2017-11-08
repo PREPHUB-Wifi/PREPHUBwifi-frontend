@@ -7,7 +7,7 @@
   <input [(ngModel)]="needHelp" name="needHelp" placeholder="Yes/No"> 
   <input [(ngModel)]="notes" name="notes" placeholder="Notes"> 
   <button ng-click="addName" type="submit">Add</button>
-</form>
+</form> 
 
 <table>
    <tr>
@@ -21,6 +21,9 @@
   	<td>{{ name.needHelp }}</td>
   	<td>{{ name.notes }}</td>
   	<td>{{ name.time }}</td>
+    <td >
+    <button ng-click="deleteName()" type="submit">Delete</button>
+  </td>
   </tr>
 </table>
 

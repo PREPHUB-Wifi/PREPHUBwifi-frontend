@@ -18,13 +18,12 @@ export class  NameListService {
   //get all users
   get(): Observable<Note[]> {
     let headers = new Headers();
-    return this.http.get( ARCHIVE_END_POINT,{headers: headers})
+    return this.http.get( ARCHIVE_END_POINT)
     .map((res:Response) => res.json())
     .catch((error:any) => Observable.throw(error.json().error || 'server error trying to get all reports'));
   }
 
   sendNewNote(note: any): Observable<Note[]> {
-    console.log("In send New Note");
     let bodyString = JSON.stringify(note);
     let headers = new Headers({ 'Content-Type': 'application/json'}); 
     headers.append('Access-Control-Allow-Origin', '*');

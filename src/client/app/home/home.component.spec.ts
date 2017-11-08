@@ -7,7 +7,7 @@ import {
 import { Observable } from 'rxjs/Observable';
 
 import { HomeComponent } from './home.component';
-import { NameListService } from '../shared/name-list/name-list.service';
+import { NameListService } from './home.service';
 
 export function main() {
   describe('Home component', () => {
@@ -23,6 +23,7 @@ export function main() {
       });
 
     });
+
 
     it('should work',
       async(() => {
@@ -59,7 +60,8 @@ export function main() {
 
 class MockNameListService {
 
-  returnValue: string[];
+  returnValue: string[]; 
+  console.log(returnValue);
 
   get(): Observable<string[]> {
     return Observable.create((observer: any) => {
