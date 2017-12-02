@@ -40,7 +40,14 @@ export class HomeComponent implements OnInit {
   getNotes() {
     this.nameListService.get()
       .subscribe(
-        names => this.names = names,
+        //names => this.names = names,
+        (names) => {
+          console.log("names: ");
+          console.log(names);
+          if (names) {
+            this.names = names;
+          }
+        },
         error => this.errorMessage = <any>error
       );
   }
@@ -49,22 +56,23 @@ export class HomeComponent implements OnInit {
    * Pushes a new name onto the names array
    * @return {boolean} false to prevent default form submit behavior to refresh the page.
    */
-  addName(): boolean {
-    var newNote:Note = { 
+  addName(): any {
+    var newNote:Note = {
      newName: this.newName,
-     needHelp: this.needHelp, 
+     needHelp: this.needHelp,
      notes: this.notes,
      time: new Date().getTime()
-    } 
+    }
 
     this.names.push(newNote);
    
-    this.nameListService.sendNewNote(newNote);
-
-    this.newName = ''; 
-    this.needHelp = ''; 
-    this.notes = '';
-    return false;
-  } 
-
+    return this.nameListService.sendNewNote(newNote).subscribe(
+      () => {},
+      (err) => console.error("Error: ", err),
+      () => {
+        this.newName = '';
+        this.needHelp = '';
+        this.notes = '';
+      });
+  }
 }

@@ -5,7 +5,7 @@ import { Note } from './home.module';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
-const BASE_URL = 'http://localhost:8081';
+const BASE_URL = 'http://elpis.mit.edu:8443';
 const ARCHIVE_END_POINT = BASE_URL + '/notes';
 
 
@@ -19,7 +19,12 @@ export class  NameListService {
   get(): Observable<Note[]> {
     let headers = new Headers();
     return this.http.get( ARCHIVE_END_POINT)
-    .map((res:Response) => res.json())
+    .map((res:Response) => {
+      if (!res){
+        return {};
+      }
+      return res.json();
+    })
     .catch((error:any) => Observable.throw(error.json().error || 'server error trying to get all reports'));
   }
 
@@ -28,6 +33,9 @@ export class  NameListService {
     let headers = new Headers({ 'Content-Type': 'application/json'}); 
     headers.append('Access-Control-Allow-Origin', '*');
     let options = new RequestOptions({ headers: headers });
+
+    console.log("send new note");
+    console.log(note);
 
     return this.http.post( ARCHIVE_END_POINT, note, options).subscribe();
   }
