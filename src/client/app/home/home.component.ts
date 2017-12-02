@@ -43,7 +43,14 @@ export class HomeComponent implements OnInit {
   getNotes() {
     this.nameListService.get()
       .subscribe(
-        names => this.names = names,
+        //names => this.names = names,
+        (names) => {
+          console.log("names: ");
+          console.log(names);
+          if (names) {
+            this.names = names;
+          }
+        },
         error => this.errorMessage = <any>error
       );
   }
@@ -57,7 +64,7 @@ export class HomeComponent implements OnInit {
     var newNote:Note = {
      pckt_id: id_val,
      newName: this.newName,
-     needHelp: this.needHelp, 
+     needHelp: this.needHelp,
      notes: this.notes,
      time: new Date().getTime()
     } 
@@ -72,5 +79,17 @@ export class HomeComponent implements OnInit {
     this.notes = '';
     return false;
   } 
+    }
 
+    this.names.push(newNote);
+   
+    return this.nameListService.sendNewNote(newNote).subscribe(
+      () => {},
+      (err) => console.error("Error: ", err),
+      () => {
+        this.newName = '';
+        this.needHelp = '';
+        this.notes = '';
+      });
+  }
 }
