@@ -2,11 +2,11 @@
 <p>Enter whether you need need assitance or not in the second box</p> 
 <p>Leave a note on your location/ what kind of assistance you need in the third box</p>
 
-<form (submit)="addName()">
+<form >
   <input [(ngModel)]="newName" name="newName" placeholder="Name">  
   <input [(ngModel)]="needHelp" name="needHelp" placeholder="Yes/No"> 
   <input [(ngModel)]="notes" name="notes" placeholder="Notes"> 
-  <button type="submit">Add</button>
+  <button (click)="addName()" >Add</button>
 </form>
 
 <table>

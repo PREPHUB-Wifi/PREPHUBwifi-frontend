@@ -20,15 +20,16 @@ export class  NameListService {
     let headers = new Headers();
     return this.http.get( ARCHIVE_END_POINT)
     .map((res:Response) => {
-      if (!res){
-        return {};
+      let obj = res.json();
+      if (Object.keys(obj).length === 0 && obj.constructor === Object){
+        return [];
       }
       return res.json();
     })
     .catch((error:any) => Observable.throw(error.json().error || 'server error trying to get all reports'));
   }
 
-  sendNewNote(note: any): Observable<any[]> {
+  sendNewNote(note: any): any {
     let bodyString = JSON.stringify(note);
     let headers = new Headers({ 'Content-Type': 'application/json'}); 
     headers.append('Access-Control-Allow-Origin', '*');
@@ -37,6 +38,6 @@ export class  NameListService {
     console.log("send new note");
     console.log(note);
 
-    return this.http.post( ARCHIVE_END_POINT, note, options).subscribe();
+    return this.http.post( ARCHIVE_END_POINT, note, options);
   }
 }

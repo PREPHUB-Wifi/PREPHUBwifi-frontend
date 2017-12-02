@@ -34,7 +34,6 @@ export class HomeComponent implements OnInit {
    */
   ngOnInit() {
     this.getNotes(); 
-    this.count = 0;
   }
 
   /**
@@ -59,34 +58,24 @@ export class HomeComponent implements OnInit {
    * Pushes a new name onto the names array
    * @return {boolean} false to prevent default form submit behavior to refresh the page.
    */
-  addName(): boolean { 
+  addName(): any {
     var id_val = parseInt(this.prep_id.toString() + this.count.toString());
     var newNote:Note = {
-     pckt_id: id_val,
-     newName: this.newName,
-     needHelp: this.needHelp,
-     notes: this.notes,
-     time: new Date().getTime()
+      pckt_id: id_val,
+      newName: this.newName,
+      needHelp: this.needHelp,
+      notes: this.notes,
+      time: new Date().getTime()
     } 
-    
-    console.log(this.count);
-    this.names.push(newNote);
-    
-    this.nameListService.sendNewNote(newNote);
-    this.count +=  1;
-    this.newName = ''; 
-    this.needHelp = ''; 
-    this.notes = '';
-    return false;
-  } 
-    }
 
-    this.names.push(newNote);
-   
+
+    this.names.unshift(newNote);
+
     return this.nameListService.sendNewNote(newNote).subscribe(
       () => {},
       (err) => console.error("Error: ", err),
       () => {
+        this.count +=  1;
         this.newName = '';
         this.needHelp = '';
         this.notes = '';
