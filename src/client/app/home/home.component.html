@@ -11,12 +11,14 @@
 
 <table>
    <tr>
+    <th>ID</th>
     <th>Person</th>
     <th>Need Assistance?</th> 
     <th>Notes</th>
     <th>Time Logged</th>
   </tr>
   <tr *ngFor="let name of names">
+    <td>{{ name.pckt_id }}</td>
   	<td>{{ name.newName }}</td>
   	<td>{{ name.needHelp }}</td>
   	<td>{{ name.notes }}</td>

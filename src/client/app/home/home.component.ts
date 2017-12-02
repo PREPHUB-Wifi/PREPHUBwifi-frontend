@@ -11,13 +11,15 @@ import { Note } from './home.module';
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
 })
-export class HomeComponent implements OnInit {
-
+export class HomeComponent implements OnInit { 
+  
+  prep_id: number = 1;
   newName: string = ''; 
   needHelp: string = ''; 
-  notes: string = '';
+  notes: string = ''; 
+  count: any = 0;
   errorMessage: string;
-  names: any[] = [];
+  names: any[] = []; 
 
   /**
    * Creates an instance of the HomeComponent with the injected
@@ -31,7 +33,8 @@ export class HomeComponent implements OnInit {
    * Get the names OnInit
    */
   ngOnInit() {
-    this.getNotes();
+    this.getNotes(); 
+    this.count = 0;
   }
 
   /**
@@ -49,18 +52,21 @@ export class HomeComponent implements OnInit {
    * Pushes a new name onto the names array
    * @return {boolean} false to prevent default form submit behavior to refresh the page.
    */
-  addName(): boolean {
-    var newNote:Note = { 
+  addName(): boolean { 
+    var id_val = parseInt(this.prep_id.toString() + this.count.toString());
+    var newNote:Note = {
+     pckt_id: id_val,
      newName: this.newName,
      needHelp: this.needHelp, 
      notes: this.notes,
      time: new Date().getTime()
     } 
-
+    
+    console.log(this.count);
     this.names.push(newNote);
-   
+    
     this.nameListService.sendNewNote(newNote);
-
+    this.count +=  1;
     this.newName = ''; 
     this.needHelp = ''; 
     this.notes = '';

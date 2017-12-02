@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NameListService } from './home.service';
 
 export interface Note {
+    pckt_id: number;
     newName: string;
     needHelp: string;
     notes: string;
