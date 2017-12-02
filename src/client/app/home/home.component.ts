@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
    * Get the names OnInit
    */
   ngOnInit() {
-    this.getNotes(); 
+    this.getNotes();
   }
 
   /**
@@ -47,7 +47,15 @@ export class HomeComponent implements OnInit {
           console.log("names: ");
           console.log(names);
           if (names) {
-            this.names = names;
+            this.names = names.reverse(); 
+            var digits = (""+names[0].pckt_id).split(""); 
+            digits.shift();
+            var res = ''; 
+            for(var d = 0; d < digits.length; d++){
+                res += digits[d].toString();
+            }
+            this.count = parseInt(res) + 1;
+            
           }
         },
         error => this.errorMessage = <any>error

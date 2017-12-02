@@ -5,7 +5,8 @@ import { Note } from './home.module';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
-const BASE_URL = 'http://elpis.mit.edu:8443';
+const BASE_URL = 'http://localhost:8443';
+//const BASE_URL = 'http://elpis.mit.edu:8443';
 const ARCHIVE_END_POINT = BASE_URL + '/notes';
 
 
