@@ -16,6 +16,7 @@
     <th>Need Assistance?</th> 
     <th>Notes</th>
     <th>Time Logged</th>
+    <th>Delete?</th>
   </tr>
   <tr *ngFor="let name of names">
     <td>{{ name.pckt_id }}</td>
@@ -23,6 +24,7 @@
   	<td>{{ name.needHelp }}</td>
   	<td>{{ name.notes }}</td>
   	<td>{{ name.time }}</td>
+    <td><button type="button" class="btn btn-danger" (click)="removeItem(name)">X</button></td>
   </tr>
 </table>
 

@@ -89,4 +89,18 @@ export class HomeComponent implements OnInit {
         this.notes = '';
       });
   }
+
+  removeItem(item){ 
+    var index = -1;
+    for( var i = 0; i < this.names.length; i++ ) {
+      if( this.names[i].id === item.id ) {
+          index = i;
+          break;
+       }
+    }
+    this.names.splice(index,1); 
+    return this.nameListService.deleteNote(item).subscribe(() => {},
+      (err) => console.error("Error: ", err));
+    
+  }
 }
