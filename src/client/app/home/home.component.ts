@@ -75,8 +75,6 @@ export class HomeComponent implements OnInit {
       notes: this.notes,
       time: new Date().getTime()
     } 
-
-
     this.names.unshift(newNote);
 
     return this.nameListService.sendNewNote(newNote).subscribe(
@@ -90,6 +88,23 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  updateNote(pckt_id,update_Name,update_help,notes){
+    var index = -1
+    for( var i = 0; i < this.names.length; i++ ) {
+      if( this.names[i].pckt_id.toString() === pckt_id) { 
+          console.log('found match');
+          this.names[i].newName = update_Name;
+          this.names[i].needHelp = update_help;
+          this.names[i].notes = notes; 
+          this.names[i].time = new Date().getTime();
+          index = i;
+      }
+    } 
+    console.log(this.names[index].toString() + ', ' + index)
+    return this.nameListService.updateNote(this.names[index]).subscribe(() => {},(err) => console.error("Error: ", err));
+
+  }
+
   removeItem(item){ 
     var index = -1;
     for( var i = 0; i < this.names.length; i++ ) {
@@ -99,6 +114,7 @@ export class HomeComponent implements OnInit {
        }
     }
     this.names.splice(index,1); 
+    this.count -=  1;
     return this.nameListService.deleteNote(item).subscribe(() => {},
       (err) => console.error("Error: ", err));
     

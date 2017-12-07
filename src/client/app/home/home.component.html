@@ -2,12 +2,28 @@
 <p>Enter whether you need need assitance or not in the second box</p> 
 <p>Leave a note on your location/ what kind of assistance you need in the third box</p>
 
+<h3>Send new request</h3>
 <form >
   <input [(ngModel)]="newName" name="newName" placeholder="Name">  
   <input [(ngModel)]="needHelp" name="needHelp" placeholder="Yes/No"> 
   <input [(ngModel)]="notes" name="notes" placeholder="Notes"> 
   <button (click)="addName()" >Add</button>
 </form>
+
+
+<h3>Update message: Fill in the fields that you want to change.</h3>
+<p>IMPORTANT: You must include the message ID for the message you wish to update</p>
+<form>
+  <input [(ngModel)]="pckt_id" name="pckt_id" placeholder="ID"> 
+  <input [(ngModel)]="update_Name" name="update_Name" placeholder="Name">  
+  <input [(ngModel)]="update_Help" name="update_Help" placeholder="Yes/No"> 
+  <input [(ngModel)]="update_notes" name="update_notes" placeholder="Notes"> 
+  <button (click)="updateNote(pckt_id,update_Name,update_Help,update_notes)">Update</button>
+</form>  
+<br />
+<br />
+<br />
+
 
 <table>
    <tr>
@@ -16,16 +32,17 @@
     <th>Need Assistance?</th> 
     <th>Notes</th>
     <th>Time Logged</th>
-    <th>Delete?</th>
+    <th>Delete</th>
   </tr>
   <tr *ngFor="let name of names">
     <td>{{ name.pckt_id }}</td>
   	<td>{{ name.newName }}</td>
   	<td>{{ name.needHelp }}</td>
   	<td>{{ name.notes }}</td>
-  	<td>{{ name.time }}</td>
-    <td><button type="button" class="btn btn-danger" (click)="removeItem(name)">X</button></td>
-  </tr>
+  	<td>{{ name.time }}</td> 
+    <td><button type="button" class="btn btn-danger" (click)="removeItem(name)">X</button>
+    </td>
+  </tr> 
 </table>
 
 

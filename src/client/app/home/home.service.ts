@@ -48,4 +48,13 @@ export class  NameListService {
    return this.http.delete(ARCHIVE_END_POINT + '/' + note.pckt_id.toString(), {headers: headers});
     
   }
+
+  updateNote(note: any): any {
+   let bodyString = JSON.stringify(note);
+    let headers = new Headers({ 'Content-Type': 'application/json'}); 
+    headers.append('Access-Control-Allow-Origin', '*');
+    let options = new RequestOptions({ headers: headers });
+   /**return this.http.put(ARCHIVE_END_POINT + '/' + note.pckt_id.toString(), {headers: headers});**/
+  return this.http.put(ARCHIVE_END_POINT, JSON.stringify(note), {headers: headers});
+  }
 }
